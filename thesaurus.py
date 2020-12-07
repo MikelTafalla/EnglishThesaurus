@@ -10,7 +10,7 @@ def meaning(word):
     wordL = word.lower()
     city = word.capitalize()
     acronym = word.upper()
-    wGuessed = get_close_matches(word, data.keys())
+    wGuessed = get_close_matches(word, data.keys(), cutoff=0.8)
 
     # check for existing word
     if wordL in data:
