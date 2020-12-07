@@ -11,19 +11,33 @@ def meaning(word):
     city = word.capitalize()
     acronym = word.upper()
     wGuessed = get_close_matches(word, data.keys(), cutoff=0.8)
-
+    display = f""
+    counter = 0
     # check for existing word
     if wordL in data:
-        print(data[wordL])
+        for element in data[wordL]:
+            counter += 1
+            display += "\n" + str(counter) + " " + element + "\n"
+        print(display)
     elif city in data:
-        print(data[city])
+        for element in data[city]:
+            counter += 1
+            display += "\n" + str(counter) + " " + element + "\n"
+        print(display)
     elif acronym in data:
-        print(data[acronym])
+        for element in data[acronym]:
+            counter += 1
+            display += "\n" + str(counter) + " " + element + "\n"
+        print(display)
     elif len(wGuessed) > 0:   
         wCorrected = input(f"did you mean {wGuessed[0]}?: Yes or No: ")
         check = wCorrected.lower()
+        counter = 0
         if check == "yes":
-            print(data[wGuessed[0]])
+            for element in data[wGuessed[0]]:
+                counter += 1
+                display += "\n" + str(counter) + " " + element + "\n"
+            print(display)
         elif check == "no":
             print("Word doesn't exist. Please double check it")
         else:
