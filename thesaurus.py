@@ -14,22 +14,28 @@ def meaning(word):
 
     # check for existing word
     if wordL in data:
-        return data[wordL]
+        print(data[wordL])
     elif city in data:
-        return data[city]
+        print(data[city])
     elif acronym in data:
-        return data[acronym]
+        print(data[acronym])
     elif len(wGuessed) > 0:   
         wCorrected = input(f"did you mean {wGuessed[0]}?: Yes or No: ")
         check = wCorrected.lower()
         if check == "yes":
-            print(meaning(wGuessed[0]))
+            print(data[wGuessed[0]])
         elif check == "no":
-            word = input("Word doesn't exist. Please reenter your word:")
-            print(meaning(word))
-        return "thanks for using our dictionay"
+            print("Word doesn't exist. Please double check it")
+        else:
+            print("Command not Understood")              
     else:
-        return "Word daesn't exist. Please double check it"
+        print("Word doesn't exist. Please double check it")
+
+    more = input("Please enter another word or type any single letter to close the program: ")
+    if len(more) > 1:
+        print(meaning(more))
+    else:
+        return "Good Bye"
 # Ask user to input word and store input in variable
 word = input("Enter word: ")
 
