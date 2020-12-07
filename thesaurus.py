@@ -10,6 +10,7 @@ def meaning(word):
     wordL = word.lower()
     city = word.capitalize()
     acronym = word.upper()
+    wGuessed = get_close_matches(word, data.keys())
 
     # check for existing word
     if wordL in data:
@@ -18,16 +19,17 @@ def meaning(word):
         return data[city]
     elif acronym in data:
         return data[acronym]
-    else:
-        wGuessed = get_close_matches(word, data.keys())
+    elif len(wGuessed) > 0:   
         wCorrected = input(f"did you mean {wGuessed[0]}?: Yes or No: ")
         check = wCorrected.lower()
         if check == "yes":
             print(meaning(wGuessed[0]))
-        else:
+        elif check == "no":
             word = input("Word doesn't exist. Please reenter your word:")
             print(meaning(word))
-    return "thanks for using our dictionay"
+        return "thanks for using our dictionay"
+    else:
+        return "Word daesn't exist. Please double check it"
 # Ask user to input word and store input in variable
 word = input("Enter word: ")
 
